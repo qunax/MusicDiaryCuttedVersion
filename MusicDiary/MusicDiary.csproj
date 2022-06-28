@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Views\album.png" />
+    <None Remove="Views\artist.png" />
+    <None Remove="Views\back_button.png" />
+    <None Remove="Views\FlatDisc_DiaryOfMeloman.png" />
+    <None Remove="Views\FlatMusicianIcon5.jpg" />
+    <None Remove="Views\remove-icon-24.jpg" />
+    <None Remove="Views\three-dots button.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MaterialDesignColors" Version="2.0.6" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Views\album.png" />
+    <Resource Include="Views\artist.png" />
+    <Resource Include="Views\back_button.png" />
+    <Resource Include="Views\FlatDisc_DiaryOfMeloman.png" />
+    <Resource Include="Views\FlatMusicianIcon5.jpg" />
+    <Resource Include="Views\remove-icon-24.jpg" />
+    <Resource Include="Views\three-dots button.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+
+</Project>

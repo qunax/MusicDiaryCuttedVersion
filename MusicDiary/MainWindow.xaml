@@ -1,0 +1,35 @@
+﻿<Window x:Class="MusicDiary.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MusicDiary"
+        xmlns:views="clr-namespace:MusicDiary.Views"
+        xmlns:vms="clr-namespace:MusicDiary.ViewModels"
+        mc:Ignorable="d"
+        Title="Music Diary" MinHeight="820" MinWidth="900">
+    <Grid >
+        <Grid.Resources >
+            <DataTemplate DataType="{x:Type vms:MainMenuViewModel}">
+                <views:MainMenuView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:AddTrackViewModel}" >
+                <views:AddTrackView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:AddArtistViewModel}" >
+                <views:AddArtistView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:MyPlaylistsViewModel}" >
+                <views:MyPlaylistsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:MakePlaylistViewModel}" >
+                <views:MakePlaylistView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:TrackInfoViewModel}" >
+                <views:TrackInfoView/>
+            </DataTemplate>
+        </Grid.Resources>
+
+        <ContentControl Content="{Binding CurrentViewModel}" />
+    </Grid>
+</Window>

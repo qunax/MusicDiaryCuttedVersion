@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="MusicDiary.Views.AddArtistView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:MusicDiary.Views"
+             mc:Ignorable="d" 
+             MinHeight="780" MinWidth="880" Background="#88CFC3">
+    <Grid>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" >
+            <Border Margin="5" Background="White" Padding="5" CornerRadius="15">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="40" Color="LightGray" ShadowDepth="0"/>
+                </Border.Effect>
+                <Grid >
+                    <StackPanel >
+                        <Image >
+                            <Image.Source >
+                                <Binding Path="ArtistAvatar" >
+                                    <Binding.TargetNullValue>
+                                        <ImageSource>artist.png</ImageSource>
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+                        <Button Content=" Add Another Avatar" Margin="10 20 10 0" Style="{StaticResource MaterialDesignFlatLightBgButton }" Command="{Binding AddAvatar}"/>
+                    </StackPanel>
+                    <Button Content="Cancel Addition" VerticalAlignment="Bottom" Margin="10 0 10 70" Style="{StaticResource MaterialDesignFlatLightButton}" Command="{Binding CancelCommand}"/>
+                    <Button Content="Submit" VerticalAlignment="Bottom" Margin="10 0 10 20" Style="{StaticResource MaterialDesignFlatMidBgButton}" Command="{Binding SubmitCommand}" />
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Border Margin="5" Background="White" Padding="15" CornerRadius="15">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="40" Color="LightGray" ShadowDepth="0"/>
+                </Border.Effect>
+                <Grid>
+                    <StackPanel >
+                        <TextBlock Text="Artist Name" FontSize="25 " FontWeight="Bold" Margin=" 25 20 0 20"/>
+                        <TextBox materialDesign:HintAssist.Hint=" Enter an Artist Name" Margin="20 0" Style="{StaticResource MaterialDesignOutlinedTextBox}" Text="{Binding ArtistName, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Text="Artist Bio" FontSize="25 " FontWeight="Bold" Margin=" 25 20 0 20"/>
+                        <TextBox materialDesign:HintAssist.Hint=" Enter a Bio of the Artist" Margin="20 0" 
+                                 TextWrapping="Wrap" AcceptsReturn="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Text="{Binding ArtistInfo, UpdateSourceTrigger=PropertyChanged}" Height="170" Cursor="Arrow" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

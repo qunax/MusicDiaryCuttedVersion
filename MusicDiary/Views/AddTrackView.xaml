@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="MusicDiary.Views.AddTrackView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:MusicDiary.Views"
+             mc:Ignorable="d" 
+             MinHeight="780" MinWidth="880" Background="#88CFC3">
+    <Grid>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" >
+            <Border Margin="5" Background="White" Padding="5" CornerRadius="15">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="40" Color="LightGray" ShadowDepth="0"/>
+                </Border.Effect>
+                <Grid >
+                    <StackPanel >
+                        <Image >
+                            <Image.Source >
+                                <Binding Path="TrackCover" >
+                                    <Binding.TargetNullValue>
+                                        <ImageSource>FlatDisc_DiaryOfMeloman.png</ImageSource>
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+                        <Button Content=" Add Personal Cover" Margin="10 20 10 0" Style="{StaticResource MaterialDesignFlatLightBgButton }" />
+                    </StackPanel>
+                    <Button Content="Cancel Addition" VerticalAlignment="Bottom" Margin="10 0 10 70" Style="{StaticResource MaterialDesignFlatLightButton}" Command="{Binding CancelCommand}"/>
+                    <Button Content="Submit" VerticalAlignment="Bottom" Margin="10 0 10 20" Style="{StaticResource MaterialDesignFlatMidBgButton}" Command="{Binding SubmitCommand}" />
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Border Margin="5" Background="White" Padding="15" CornerRadius="15">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="40" Color="LightGray" ShadowDepth="0"/>
+                </Border.Effect>
+                <Grid>
+                    <StackPanel >
+                        <TextBlock Text="Track Title" FontSize="25 " FontWeight="Bold" Margin=" 25 20 0 20"/>
+                        <TextBox materialDesign:HintAssist.Hint=" Enter a Track Title" Margin="20 0" Style="{StaticResource MaterialDesignOutlinedTextBox}" Text="{Binding TrackTitle, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Text="Genre" FontSize="25 " FontWeight="Bold" Margin=" 25 20 0 20"/>
+                        <TextBox materialDesign:HintAssist.Hint=" Enter Track's Genre" Margin="20 0" Style="{StaticResource MaterialDesignOutlinedTextBox}" Text="{Binding TrackGenre, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Text="Album Name" FontSize="25 " FontWeight="Bold" Margin=" 25 20 0 20"/>
+                        <TextBox materialDesign:HintAssist.Hint=" Enter Album Name" Margin="20 0" Style="{StaticResource MaterialDesignOutlinedTextBox}" Text="{Binding TrackAlbumName, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Text="Artist Name" FontSize="25 " FontWeight="Bold" Margin=" 25 20 0 20"/>
+                        <ComboBox HorizontalAlignment="Left"
+                                  VerticalAlignment="Top" Width="150" Margin="20 0 0 0" 
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                  ItemsSource="{Binding Path=Artists}" SelectedItem="{Binding Path=TrackArtist}" DisplayMemberPath="Name" >
+                        </ComboBox>
+                        <TextBlock Text="Track Text" FontSize="25 " FontWeight="Bold" Margin=" 25 20 0 20"/>
+                        <TextBox materialDesign:HintAssist.Hint=" Enter Text of the Track" Margin="20 0"
+                                 TextWrapping="Wrap" AcceptsReturn="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
+                                 Style="{StaticResource MaterialDesignOutlinedTextBox}" Text="{Binding TrackText, UpdateSourceTrigger=PropertyChanged}" Height="170" Cursor="Arrow" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>
