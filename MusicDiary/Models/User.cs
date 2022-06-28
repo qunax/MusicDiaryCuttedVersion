@@ -11,7 +11,7 @@ namespace MusicDiary.Models
     public class User
     {
 
-        private readonly IDataService<Track> _trackDataProvider;
+        private readonly DatabaseTrackDataService _trackDataProvider;
         private readonly IDataService<Playlist> _playlistDataProvider;
         private readonly IDataService<Artist> _artistDataProvider;
 
@@ -19,7 +19,7 @@ namespace MusicDiary.Models
         public ArtistViewModel CurrentArtistViewModel { get; set; }
         public PlaylistViewModel CurrentPlaylistViewModel { get; set; }
 
-        public User(IDataService<Track> trackDataProvider, IDataService<Playlist> playlistDataProvider, IDataService<Artist> artistDataProvider)
+        public User(DatabaseTrackDataService trackDataProvider, IDataService<Playlist> playlistDataProvider, IDataService<Artist> artistDataProvider)
         {
             _trackDataProvider = trackDataProvider;
             _playlistDataProvider = playlistDataProvider;
@@ -48,6 +48,11 @@ namespace MusicDiary.Models
         public async Task<bool> DeleteTrack(int id)
         {
             return await _trackDataProvider.Delete(id);
+        }
+
+        public async Task<IEnumerable<Track>> GetTracksByArtistId(int id)
+        {
+            return await _trackDataProvider.GetTracksByArtistId(id);
         }
 
         //METHODS OF WORKING WITH PLAYLISTS
@@ -80,6 +85,11 @@ namespace MusicDiary.Models
         public async Task AddArtist(Artist artist)
         {
             await _artistDataProvider.Create(artist);
+        }
+
+        public async Task<bool> DeleteArtist(int id)
+        {
+            return await _artistDataProvider.Delete(id);
         }
 
     }

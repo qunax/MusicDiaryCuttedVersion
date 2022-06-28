@@ -36,7 +36,7 @@ namespace MusicDiary
             _musicDiaryDbContextFactory = new MusicDiaryDbContextFactory(CONNECTION_STRING);
 
 
-            IDataService<Track> trackDataService = new DatabaseTrackDataService(_musicDiaryDbContextFactory);
+            DatabaseTrackDataService trackDataService = new DatabaseTrackDataService(_musicDiaryDbContextFactory);
             IDataService<Playlist> playlistDataService = new DatabasePlaylistDataService(_musicDiaryDbContextFactory);
             IDataService<Artist> artistDataService = new DatabaseArtistDataService(_musicDiaryDbContextFactory);
             _user = new User(trackDataService, playlistDataService, artistDataService);
@@ -90,7 +90,8 @@ namespace MusicDiary
         private LikedArtistsViewModel CreateLikedArtistsViewModel()
         {
             return LikedArtistsViewModel.LoadViewModel(_user, new NavigationService(_innerNavigationStore, CreateHomePageViewModel),
-                new NavigationService(_navigationStore, CreateAddArtistViewModel), new NavigationService(_innerNavigationStore, CreateLikedArtistsViewModel));
+                new NavigationService(_navigationStore, CreateAddArtistViewModel), new NavigationService(_navigationStore, CreateArtisInfoViewModel),
+                new NavigationService(_innerNavigationStore, CreateLikedArtistsViewModel));
         }
 
         private MyPlaylistsViewModel CreateLikedAlbumsViewModel()
@@ -122,7 +123,7 @@ namespace MusicDiary
 
         private ArtistInfoViewModel CreateArtisInfoViewModel()
         {
-            return new ArtisInfoViewModel(_user, new NavigationService(_navigationStore, CreateMainMenuViewModel));
+            return ArtistInfoViewModel.LoadViewModel(_user, new NavigationService(_navigationStore, CreateMainMenuViewModel));
         }
     }
 }

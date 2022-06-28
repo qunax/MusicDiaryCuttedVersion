@@ -50,10 +50,13 @@ namespace MusicDiary.ViewModels
             MoreArtistInformationCommand = new MoreInformationArtistCommand(this, artistInfoNavigationService, user);
             DeleteArtistCommand = new DeleteArtistCommand(this, likedArtistsNavigationService, user);
             AddArtistCommand = new NavigateCommand(addArtistNavigationService);
+
+            user.CurrentArtistViewModel = _artistSelectedItem;
         }
-        public static LikedArtistsViewModel LoadViewModel(User user, NavigationService homePageNavigationSErvice, NavigationService artistInfoNavigationService,
-            NavigationService addArtistNavigationService, NavigationService likedArtistsNavigationService)
+        public static LikedArtistsViewModel LoadViewModel(User user, NavigationService homePageNavigationSErvice, NavigationService addArtistNavigationService,
+            NavigationService artistInfoNavigationService, NavigationService likedArtistsNavigationService)
         {
+            
             LikedArtistsViewModel viewModel = new LikedArtistsViewModel(user, homePageNavigationSErvice,
                 addArtistNavigationService, artistInfoNavigationService, likedArtistsNavigationService);
 

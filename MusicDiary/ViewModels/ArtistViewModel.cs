@@ -13,7 +13,7 @@ namespace MusicDiary.ViewModels
         private readonly Artist _artist;
 
 
-
+        public int ArtistId => _artist.Id;
         public string ArtistName => _artist.Name;
         public string InfoAboutArtist => _artist.InfoAbout;
 

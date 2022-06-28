@@ -60,5 +60,13 @@ namespace MusicDiary.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<IEnumerable<Track>> GetTracksByArtistId(int id)
+        {
+            using (MusicDiaryDbContext context = _dbContextFactory.CreateDbContext())
+            {
+                return await context.Tracks.Where(t => t.ArtistId == id).ToListAsync();
+            }
+        }
     }
 }

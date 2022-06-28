@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace MusicDiary.Commands
 {
-    public class MoreInformationTrackCommand : AsyncCommandBase
+    public class MoreInformationTrackCommand : CommandBase
     {
         private readonly LikedTracksViewModel _likedTracksViewModel;
         private readonly NavigationService _trackInfoNavigationService;
@@ -21,7 +21,7 @@ namespace MusicDiary.Commands
         }
 
 
-        public async override Task ExecuteAsync(object parameter)
+        public override void Execute(object parameter)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace MusicDiary.Commands
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Failed to load track.", "Error",
+                MessageBox.Show("Failed to load track information.", "Error",
                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
