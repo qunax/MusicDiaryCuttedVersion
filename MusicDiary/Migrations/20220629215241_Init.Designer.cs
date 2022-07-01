@@ -8,8 +8,8 @@ using MusicDiary.DBContexts;
 namespace MusicDiary.Migrations
 {
     [DbContext(typeof(MusicDiaryDbContext))]
-    [Migration("20220627185455_init")]
-    partial class init
+    [Migration("20220629215241_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -60,6 +60,9 @@ namespace MusicDiary.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("AlbumTitle")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("ArtistId")
                         .HasColumnType("INTEGER");
 
@@ -82,6 +85,24 @@ namespace MusicDiary.Migrations
                     b.ToTable("Tracks");
                 });
 
+            modelBuilder.Entity("MusicDiary.Models.TrackPlaylist", b =>
+                {
+                    b.Property<int>("TrackId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PlaylistId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("TrackId", "PlaylistId");
+
+                    b.HasIndex("PlaylistId");
+
+                    b.ToTable("TrackPlaylist");
+                });
+
             modelBuilder.Entity("MusicDiary.Models.Track", b =>
                 {
                     b.HasOne("MusicDiary.Models.Artist", "Artist")
@@ -91,6 +112,35 @@ namespace MusicDiary.Migrations
                         .IsRequired();
 
                     b.Navigation("Artist");
+                });
+
+            modelBuilder.Entity("MusicDiary.Models.TrackPlaylist", b =>
+                {
+                    b.HasOne("MusicDiary.Models.Playlist", "Playlist")
+                        .WithMany("Tracks")
+                        .HasForeignKey("PlaylistId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MusicDiary.Models.Track", "Track")
+                        .WithMany("Playlists")
+                        .HasForeignKey("TrackId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Playlist");
+
+                    b.Navigation("Track");
+                });
+
+            modelBuilder.Entity("MusicDiary.Models.Playlist", b =>
+                {
+                    b.Navigation("Tracks");
+                });
+
+            modelBuilder.Entity("MusicDiary.Models.Track", b =>
+                {
+                    b.Navigation("Playlists");
                 });
 #pragma warning restore 612, 618
         }

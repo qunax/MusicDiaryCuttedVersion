@@ -37,9 +37,10 @@ namespace MusicDiary
 
 
             DatabaseTrackDataService trackDataService = new DatabaseTrackDataService(_musicDiaryDbContextFactory);
+            DatabaseTrackPlaylistDataService trackPlaylistDataService = new DatabaseTrackPlaylistDataService(_musicDiaryDbContextFactory);
             IDataService<Playlist> playlistDataService = new DatabasePlaylistDataService(_musicDiaryDbContextFactory);
             IDataService<Artist> artistDataService = new DatabaseArtistDataService(_musicDiaryDbContextFactory);
-            _user = new User(trackDataService, playlistDataService, artistDataService);
+            _user = new User(trackDataService, trackPlaylistDataService, playlistDataService, artistDataService);
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -96,8 +97,9 @@ namespace MusicDiary
 
         private MyPlaylistsViewModel CreateLikedAlbumsViewModel()
         {
-            return new MyPlaylistsViewModel(new NavigationService(_innerNavigationStore, CreateHomePageViewModel),
-                new NavigationService(_navigationStore, CreateMakePlaylistViewModel));
+            return MyPlaylistsViewModel.LoadViewModel(_user, new NavigationService(_innerNavigationStore, CreateHomePageViewModel),
+                new NavigationService(_navigationStore, CreateMakePlaylistViewModel), new NavigationService(_navigationStore, CreatePlaylistInfoViewModel),
+                new NavigationService(_innerNavigationStore, CreateLikedAlbumsViewModel));
         }      
         
 
@@ -113,7 +115,7 @@ namespace MusicDiary
 
         private MakePlaylistViewModel CreateMakePlaylistViewModel()
         {
-            return new MakePlaylistViewModel(new NavigationService(_navigationStore, CreateMainMenuViewModel));
+            return MakePlaylistViewModel.LoadViewModel(_user, new NavigationService(_navigationStore, CreateMainMenuViewModel));
         }
 
         private TrackInfoViewModel CreateTrackInfoViewModel()
@@ -124,6 +126,11 @@ namespace MusicDiary
         private ArtistInfoViewModel CreateArtisInfoViewModel()
         {
             return ArtistInfoViewModel.LoadViewModel(_user, new NavigationService(_navigationStore, CreateMainMenuViewModel));
+        }
+
+        private PlaylistInfoViewModel CreatePlaylistInfoViewModel()
+        {
+            return PlaylistInfoViewModel.LoadViewModel(_user, new NavigationService(_navigationStore, CreateMainMenuViewModel));
         }
     }
 }

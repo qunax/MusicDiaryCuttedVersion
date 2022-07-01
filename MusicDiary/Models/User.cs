@@ -12,6 +12,7 @@ namespace MusicDiary.Models
     {
 
         private readonly DatabaseTrackDataService _trackDataProvider;
+        private readonly DatabaseTrackPlaylistDataService _trackPlaylistDataProvider;
         private readonly IDataService<Playlist> _playlistDataProvider;
         private readonly IDataService<Artist> _artistDataProvider;
 
@@ -19,9 +20,10 @@ namespace MusicDiary.Models
         public ArtistViewModel CurrentArtistViewModel { get; set; }
         public PlaylistViewModel CurrentPlaylistViewModel { get; set; }
 
-        public User(DatabaseTrackDataService trackDataProvider, IDataService<Playlist> playlistDataProvider, IDataService<Artist> artistDataProvider)
+        public User(DatabaseTrackDataService trackDataProvider,DatabaseTrackPlaylistDataService trackPlaylistDataProvider , IDataService<Playlist> playlistDataProvider, IDataService<Artist> artistDataProvider)
         {
             _trackDataProvider = trackDataProvider;
+            _trackPlaylistDataProvider = trackPlaylistDataProvider;
             _playlistDataProvider = playlistDataProvider;
             _artistDataProvider = artistDataProvider;
         }
@@ -55,6 +57,11 @@ namespace MusicDiary.Models
             return await _trackDataProvider.GetTracksByArtistId(id);
         }
 
+        //public async Task<IEnumerable<Track>> GetTracksByPlaylistId(int id)
+        //{
+        //    return await _trackDataProvider.GetTracksByPlaylistId(id);
+        //}
+
         //METHODS OF WORKING WITH PLAYLISTS
 
 
@@ -66,6 +73,11 @@ namespace MusicDiary.Models
         public async Task AddPlaylist(Playlist playlist)
         {
             await _playlistDataProvider.Create(playlist);
+        }
+
+        public async Task<bool> DeletePlaylist(int id)
+        {
+            return await _playlistDataProvider.Delete(id);
         }
 
 
@@ -92,5 +104,13 @@ namespace MusicDiary.Models
             return await _artistDataProvider.Delete(id);
         }
 
+
+        //METHODS OF WORKING WITH TRACKPLAYLISTS
+
+
+        public async Task<List<Track>> GetTracksByPlaylistId(int id)
+        {
+            return await _trackPlaylistDataProvider.GetTracksByPlaylistId(id);
+        }
     }
 }

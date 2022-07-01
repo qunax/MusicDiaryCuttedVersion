@@ -27,9 +27,16 @@ namespace MusicDiary.Services
             }
         }
 
-        public Task<bool> Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            throw new NotImplementedException();
+            using (MusicDiaryDbContext context = _dbContextFactory.CreateDbContext())
+            {
+                Playlist playlist = await context.Set<Playlist>().FirstOrDefaultAsync((e) => e.Id == id);
+                context.Set<Playlist>().Remove(playlist);
+                await context.SaveChangesAsync();
+
+                return true;
+            }
         }
 
         public Task<Playlist> Get(int id)

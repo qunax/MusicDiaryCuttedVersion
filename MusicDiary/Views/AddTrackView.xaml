@@ -20,7 +20,7 @@
                 </Border.Effect>
                 <Grid >
                     <StackPanel >
-                        <Image >
+                        <Image Height="280" Width="280" >
                             <Image.Source >
                                 <Binding Path="TrackCover" >
                                     <Binding.TargetNullValue>
@@ -29,7 +29,7 @@
                                 </Binding>
                             </Image.Source>
                         </Image>
-                        <Button Content=" Add Personal Cover" Margin="10 20 10 0" Style="{StaticResource MaterialDesignFlatLightBgButton }" />
+                        <Button Content=" Add Personal Cover" Margin="10 20 10 0" Style="{StaticResource MaterialDesignFlatLightBgButton }" Command="{Binding AddCoverCommand}"/>
                     </StackPanel>
                     <Button Content="Cancel Addition" VerticalAlignment="Bottom" Margin="10 0 10 70" Style="{StaticResource MaterialDesignFlatLightButton}" Command="{Binding CancelCommand}"/>
                     <Button Content="Submit" VerticalAlignment="Bottom" Margin="10 0 10 20" Style="{StaticResource MaterialDesignFlatMidBgButton}" Command="{Binding SubmitCommand}" />

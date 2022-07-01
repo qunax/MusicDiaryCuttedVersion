@@ -8,19 +8,6 @@ namespace MusicDiary.Models
 {
     public class Artist
     {
-        public Artist(string name, string infoAbout)
-        {
-            Name = name;
-            InfoAbout = infoAbout;
-            Avatar = "artist.png";
-        }
-
-        public Artist(string name, string infoAbout, string avatar)
-        {
-            Name = name;
-            InfoAbout = infoAbout;
-            Avatar = avatar;
-        }
 
         public int Id { get; set; }
         public string Name { get; set; }

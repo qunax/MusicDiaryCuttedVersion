@@ -23,14 +23,29 @@ namespace MusicDiary.ViewModels
         public string AlbumTitle => _track.AlbumTitle;
         public string ArtistOfTrack => _artist.Name;
         public string TrackText => _track.Text;
-
         public string TrackCover => _track.Cover;
+
+
+        private bool _isSelected;
+        public bool IsSelected
+        {
+            get
+            {
+                return _isSelected;
+            }
+            set
+            {
+                _isSelected = value;
+                OnPropertyChanged(nameof(IsSelected));
+            }
+        }
 
 
         public TrackViewModel(User user,Track track)
         {
             _user = user;
             _track = track;
+            IsSelected = false;
             GetArtist();
         }
 

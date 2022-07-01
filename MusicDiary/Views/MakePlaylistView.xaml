@@ -20,7 +20,7 @@
                 </Border.Effect>
                 <Grid >
                     <StackPanel >
-                        <Image >
+                        <Image Height="280" Width="280" >
                             <Image.Source >
                                 <Binding Path="PlaylistCover" >
                                     <Binding.TargetNullValue>
@@ -95,9 +95,7 @@
                                                 </Grid>
 
                                                 <Grid Grid.Column="2">
-                                                    <CheckBox IsChecked="{Binding Path=IsSelected, 
-                                                        RelativeSource={RelativeSource FindAncestor,
-                                                        AncestorType={x:Type ListViewItem}}}" 
+                                                    <CheckBox IsChecked="{Binding Path=IsSelected}" 
                                                         HorizontalAlignment="Center"/>
                                                 </Grid>
                                             </Grid>

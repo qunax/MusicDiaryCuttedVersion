@@ -18,6 +18,14 @@ namespace MusicDiary.Models
 
         public string Cover { get; set; }
 
+        //public ICollection<TrackPlaylist> Playlists { get; set; }
+        public ICollection<TrackPlaylist> Playlists { get; set; }
+
+        
+        public Track()
+        {
+            Playlists = new HashSet<TrackPlaylist>();
+        }
 
     }
 }

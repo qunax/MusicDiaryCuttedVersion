@@ -61,6 +61,7 @@ namespace MusicDiary.ViewModels
 
         public AddArtistViewModel(User user, NavigationService mainMenuNavigationService)
         {
+            AddAvatar = new AddCoverCommand(this);
             CancelCommand = new NavigateCommand(mainMenuNavigationService);
             SubmitCommand = new AddNewArtistCommand(user, this, mainMenuNavigationService);
         }

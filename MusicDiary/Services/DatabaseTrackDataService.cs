@@ -68,5 +68,14 @@ namespace MusicDiary.Services
                 return await context.Tracks.Where(t => t.ArtistId == id).ToListAsync();
             }
         }
+
+        public async Task<IEnumerable<Track>> GetTracksByPlaylistId(int id)
+        {
+            using (MusicDiaryDbContext context = _dbContextFactory.CreateDbContext())
+            {
+                List<Track> result = await context.Tracks.Where(x => x.Playlists.All(y => y.PlaylistId == id)).ToListAsync();
+                return result;
+            }
+        }
     }
 }

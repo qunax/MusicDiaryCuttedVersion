@@ -42,7 +42,7 @@ namespace MusicDiary.ViewModels
 
 
         public LikedTracksViewModel(User user,  NavigationService homePageNavigationSErvice, NavigationService moreInfoNavigationService, 
-            NavigationService addTrackNavigationService, NavigationService likedTracsNavigationService)
+            NavigationService addTrackNavigationService, NavigationService likedTracksNavigationService)
         {
             _tracks = new ObservableCollection<TrackViewModel>();
 
@@ -50,7 +50,7 @@ namespace MusicDiary.ViewModels
             LoadTracksCommand = new LoadTracksCommand(user, this);
             BackCommand = new NavigateCommand(homePageNavigationSErvice);
             MoreInformationCommand = new MoreInformationTrackCommand(this, user, moreInfoNavigationService);
-            DeleteTrackCommand = new DeleteTrackCommand(this, likedTracsNavigationService, user);
+            DeleteTrackCommand = new DeleteTrackCommand(this, likedTracksNavigationService, user);
             AddTrackCommand = new NavigateCommand(addTrackNavigationService);
 
         }

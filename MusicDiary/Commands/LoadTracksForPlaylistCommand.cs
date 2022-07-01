@@ -9,25 +9,25 @@ using System.Windows;
 
 namespace MusicDiary.Commands
 {
-    public class LoadTracksForArtistCommand : AsyncCommandBase
+    public class LoadTracksForPlaylistCommand : AsyncCommandBase
     {
         private readonly User _user;
-        private readonly ArtistInfoViewModel _artistInfoViewModel;
+        private readonly PlaylistInfoViewModel _playlistInfoViewModel;
 
-        public LoadTracksForArtistCommand(User user, ArtistInfoViewModel artistInfoViewModel)
+        public LoadTracksForPlaylistCommand(User user, PlaylistInfoViewModel playlistInfoViewModel)
         {
             _user = user;
-            _artistInfoViewModel = artistInfoViewModel;
+            _playlistInfoViewModel = playlistInfoViewModel;
         }
 
         public override async Task ExecuteAsync(object parameter)
         {
             try
             {
-                IEnumerable<Track> tracks = await _user.GetTracksByArtistId(_user.CurrentArtistViewModel.ArtistId);
-                _artistInfoViewModel.UpdateTracks(_user, tracks);
+                List<Track> tracks = await _user.GetTracksByPlaylistId(_playlistInfoViewModel.PlaylistViewModel.PlaylistId);
+                _playlistInfoViewModel.UpdateTracks(_user, tracks);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 MessageBox.Show("Failed to load tracks.", "Error",
                    MessageBoxButton.OK, MessageBoxImage.Error);

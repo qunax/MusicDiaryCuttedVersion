@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MusicDiary.Views.ArtistInfoView"
+﻿<UserControl x:Class="MusicDiary.Views.PlaylistInfoView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -21,17 +21,17 @@
                     <StackPanel >
                         <Image >
                             <Image.Source >
-                                <Binding Path="ArtistViewModel.ArtistAvatar" >
+                                <Binding Path="PlaylistViewModel.PlaylistCover" >
                                     <Binding.TargetNullValue>
-                                        <ImageSource>artist.png</ImageSource>
+                                        <ImageSource>album.png</ImageSource>
                                     </Binding.TargetNullValue>
                                 </Binding>
                             </Image.Source>
                         </Image>
-                        <TextBlock Text="Artist Name:" FontSize="20 " FontWeight="Bold" Margin=" 25 15 0 0"/>
-                        <TextBlock Text="{Binding Path=ArtistViewModel.ArtistName}" FontSize="20 " FontWeight="Light" Margin=" 25 5 0 0" />
+                        <TextBlock Text="Playlist Title:" FontSize="20 " FontWeight="Bold" Margin=" 25 15 0 0"/>
+                        <TextBlock Text="{Binding Path=PlaylistViewModel.PlaylistName}" FontSize="20 " FontWeight="Light" Margin=" 25 5 0 0" />
                     </StackPanel>
-                    <Button Content="Quit Artist Information" VerticalAlignment="Bottom" Margin="10 0 10 20" Style="{StaticResource MaterialDesignFlatLightButton}" Command="{Binding BackCommand}"/>
+                    <Button Content="Quit Playlist Information" VerticalAlignment="Bottom" Margin="10 0 10 20" Style="{StaticResource MaterialDesignFlatLightButton}" Command="{Binding BackCommand}" Cursor="Hand"/>
                 </Grid>
             </Border>
         </Grid>
@@ -43,9 +43,7 @@
                 </Border.Effect>
                 <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Artist Information" FontSize="25 " FontWeight="Bold" Margin=" 25 20 0 0"/>
-                        <TextBlock Text="{Binding Path=ArtistViewModel.InfoAboutArtist}" TextWrapping="Wrap" FontSize="15 " FontWeight="Light" Margin=" 25 20 0 20"/>
-                        <TextBlock Text="Artist's tracks" FontSize="25 " FontWeight="Bold" Margin=" 25 20 0 15"/>
+                        <TextBlock Text="Playlist Tracks" FontSize="25 " FontWeight="Bold" Margin=" 25 20 0 15"/>
                         <ListView x:Name="TrackListView" ItemsSource="{Binding Tracks}" ScrollViewer.CanContentScroll="False"  >
                             <ListView.ItemTemplate >
                                 <DataTemplate >

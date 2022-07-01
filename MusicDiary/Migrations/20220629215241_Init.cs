@@ -2,7 +2,7 @@
 
 namespace MusicDiary.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -43,6 +43,7 @@ namespace MusicDiary.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(type: "TEXT", nullable: true),
                     Genre = table.Column<string>(type: "TEXT", nullable: true),
+                    AlbumTitle = table.Column<string>(type: "TEXT", nullable: true),
                     ArtistId = table.Column<int>(type: "INTEGER", nullable: false),
                     Text = table.Column<string>(type: "TEXT", nullable: true),
                     Cover = table.Column<string>(type: "TEXT", nullable: true)
@@ -58,6 +59,36 @@ namespace MusicDiary.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TrackPlaylist",
+                columns: table => new
+                {
+                    TrackId = table.Column<int>(type: "INTEGER", nullable: false),
+                    PlaylistId = table.Column<int>(type: "INTEGER", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TrackPlaylist", x => new { x.TrackId, x.PlaylistId });
+                    table.ForeignKey(
+                        name: "FK_TrackPlaylist_Playlists_PlaylistId",
+                        column: x => x.PlaylistId,
+                        principalTable: "Playlists",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TrackPlaylist_Tracks_TrackId",
+                        column: x => x.TrackId,
+                        principalTable: "Tracks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TrackPlaylist_PlaylistId",
+                table: "TrackPlaylist",
+                column: "PlaylistId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Tracks_ArtistId",
                 table: "Tracks",
@@ -66,6 +97,9 @@ namespace MusicDiary.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "TrackPlaylist");
+
             migrationBuilder.DropTable(
                 name: "Playlists");
 

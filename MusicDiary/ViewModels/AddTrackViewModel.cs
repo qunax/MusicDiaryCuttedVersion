@@ -117,6 +117,7 @@ namespace MusicDiary.ViewModels
             _artists = new ObservableCollection<Artist>();
 
             LoadArtistsInTrackCommand = new LoadArtistInTrackCommand(user, this);
+            AddCoverCommand = new AddCoverCommand(this);
             CancelCommand = new NavigateCommand(mainMenuNavigationService);
             SubmitCommand = new AddNewTrackCommand(user, this, mainMenuNavigationService);
         }

@@ -45,8 +45,14 @@ namespace MusicDiary.Commands
         public override async Task ExecuteAsync(object parameter)
         {
 
-            Artist artist = new Artist(_addArtistViewModel.ArtistName,
-                _addArtistViewModel.ArtistInfo);
+            Artist artist = new Artist
+            {
+                Name = _addArtistViewModel.ArtistName,
+                InfoAbout = _addArtistViewModel.ArtistInfo,
+                Avatar = _addArtistViewModel.ArtistAvatar
+            };
+
+            
 
             try
             {

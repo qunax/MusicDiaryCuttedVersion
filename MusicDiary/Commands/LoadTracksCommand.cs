@@ -13,6 +13,7 @@ namespace MusicDiary.Commands
     {
         private readonly User _user;
         private readonly LikedTracksViewModel _likedTracksViewModel;
+        private readonly MakePlaylistViewModel _makePlaylistViewModel;
 
         public LoadTracksCommand(User user, LikedTracksViewModel likedTracksViewModel)
         {
@@ -20,12 +21,26 @@ namespace MusicDiary.Commands
             _likedTracksViewModel = likedTracksViewModel;
         }
 
+        public LoadTracksCommand(User user, MakePlaylistViewModel makePlaylistViewModel)
+        {
+            _user = user;
+            _makePlaylistViewModel = makePlaylistViewModel;
+        }
+
         public override async Task ExecuteAsync(object parameter)
         {
             try
             {
                 IEnumerable<Track> tracks = await _user.GetAllTracks();
-                _likedTracksViewModel.UpdateTracks(_user, tracks);
+                if (_likedTracksViewModel != null)
+                {
+                    _likedTracksViewModel.UpdateTracks(_user, tracks);
+                }
+                else if (_makePlaylistViewModel != null)
+                {
+                    _makePlaylistViewModel.UpdateTracks(_user, tracks);
+                }
+                
             }
             catch (Exception)
             {

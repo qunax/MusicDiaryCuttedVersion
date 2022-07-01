@@ -31,6 +31,9 @@
             <DataTemplate DataType="{x:Type vms:ArtistInfoViewModel}" >
                 <views:ArtistInfoView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vms:PlaylistInfoViewModel}" >
+                <views:PlaylistInfoView/>
+            </DataTemplate>
         </Grid.Resources>
 
         <ContentControl Content="{Binding CurrentViewModel}" />

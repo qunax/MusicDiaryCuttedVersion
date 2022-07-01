@@ -20,7 +20,7 @@
                 </Border.Effect>
                 <Grid >
                     <StackPanel >
-                        <Image >
+                        <Image Height="280" Width="280" >
                             <Image.Source >
                                 <Binding Path="ArtistAvatar" >
                                     <Binding.TargetNullValue>

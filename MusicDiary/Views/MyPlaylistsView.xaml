@@ -41,7 +41,8 @@
                     <ListView ItemsSource="{Binding Playlists}"
                               ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                               HorizontalContentAlignment="Center"
-                              ScrollViewer.CanContentScroll="False">
+                              ScrollViewer.CanContentScroll="False"
+                              SelectedItem="{Binding PlaylistSelectedItem}">
                         <ListView.ItemsPanel >
                             <ItemsPanelTemplate >
                                 <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" />
@@ -80,9 +81,28 @@
                     </ListView>
                 </Border>
             </Grid>
-
             <Grid Grid.Row="2">
-                <Button Content="Make a New Playlist" Margin="5 0 5 5" Command="{Binding MakePlaylistCommand}" />
+
+                <Grid.RowDefinitions >
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" >
+
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" Content="Open Playlist Information" Margin="5 0 5 5"
+                            Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                            Command="{Binding MorePlaylistInformationCommand}" Cursor="Hand" />
+                    <Button Grid.Column="1"  Content="Delete Playlist" Margin="5 0 5 5"
+                            Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                            Command="{Binding DeletePlaylistCommand}" Cursor="Hand" />
+                </Grid>
+                <Button Grid.Row="1" Grid.ColumnSpan="2" Content="Make a New Playlist" Margin="5 0 5 5" Command="{Binding MakePlaylistCommand}" Cursor="Hand"/>
             </Grid>
         </Grid>
     </Grid>
