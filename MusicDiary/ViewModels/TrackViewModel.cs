@@ -1,12 +1,5 @@
-﻿using MusicDiary.Commands;
-using MusicDiary.Models;
-using MusicDiary.Stores;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using MusicDiary.Models;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace MusicDiary.ViewModels
 {

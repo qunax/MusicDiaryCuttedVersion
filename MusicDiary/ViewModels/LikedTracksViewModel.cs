@@ -1,13 +1,8 @@
 ﻿using MusicDiary.Commands;
 using MusicDiary.Models;
 using MusicDiary.Services;
-using MusicDiary.Stores;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 
@@ -76,8 +71,5 @@ namespace MusicDiary.ViewModels
                 _tracks.Add(trackViewModel);
             }
         }
-
-
-
     }
 }

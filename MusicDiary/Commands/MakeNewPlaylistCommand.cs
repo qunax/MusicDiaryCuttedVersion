@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -54,19 +52,6 @@ namespace MusicDiary.Commands
         {
 
 
-            //List<Track> tracks = new List<Track>();
-            //foreach (TrackViewModel trackVM in _makePlaylistViewModel.Tracks)
-            //{
-            //    if (trackVM.IsSelected)
-            //    {
-            //        Track track = await _user.GetTrackById(trackVM.Id);
-            //        tracks.Add(track);
-
-            //    }
-            //}
-
-
-
             Playlist playlist = new Playlist
             {
                 Name = _makePlaylistViewModel.PlaylistTitle,
@@ -100,9 +85,6 @@ namespace MusicDiary.Commands
                 MessageBox.Show("Failed to add playlist.", "Error",
                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
-
-            
 
             _mainMenuNavigationService.Navigate();
         }

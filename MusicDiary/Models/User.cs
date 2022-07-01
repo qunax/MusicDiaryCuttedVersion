@@ -1,9 +1,6 @@
 ﻿using MusicDiary.Services;
 using MusicDiary.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MusicDiary.Models
@@ -57,10 +54,6 @@ namespace MusicDiary.Models
             return await _trackDataProvider.GetTracksByArtistId(id);
         }
 
-        //public async Task<IEnumerable<Track>> GetTracksByPlaylistId(int id)
-        //{
-        //    return await _trackDataProvider.GetTracksByPlaylistId(id);
-        //}
 
         //METHODS OF WORKING WITH PLAYLISTS
 

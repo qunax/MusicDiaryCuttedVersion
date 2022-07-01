@@ -3,8 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             
-             xmlns:local="clr-namespace:MusicDiary.Views"
              mc:Ignorable="d" 
              MinHeight="780" MinWidth="630"
              Background="#88CFC3" >
@@ -32,7 +30,6 @@
 
                 <Grid Grid.Column="1" >
                     <Border  Margin="5 5 5 0 " Background="White" CornerRadius="15" >
-                        <ComboBox Name="SortBy" SelectedIndex="0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="150" Margin="20 20 20 20" Style="{StaticResource MaterialDesignFloatingHintComboBox}"/>
                     </Border>
                 </Grid>
             </Grid>
